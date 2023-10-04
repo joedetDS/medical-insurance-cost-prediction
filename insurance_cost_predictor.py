@@ -11,7 +11,7 @@ import joblib
 import time
 
 #Load the model
-model=joblib.load("C:/Users/Edet Joseph/Desktop/Machine L/Medical Insurance Cost Prediction/regressor")
+model=joblib.load("/regressor")
 
 #Function to predict
 def modified_input_data(age,gender,bmi,children,smoker_status,region):
