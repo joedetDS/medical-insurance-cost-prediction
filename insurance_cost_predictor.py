@@ -1,17 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Oct  1 15:22:46 2023
-
-@author: Edet Joseph
-"""
 #import the necessary libraries
-import numpy as np
 import streamlit as st
-import joblib
 import time
+import json
+import requests
 
 #Load the model
-model=joblib.load("C:/Users/Edet Joseph/Desktop/Machine L/Medical Insurance Cost Prediction/regressor.joblib")
+url = "https://med-api-jbgd.onrender.com/med_prediction"
 
 #Function to predict
 def modified_input_data(age,gender,bmi,children,smoker_status,region):
@@ -25,7 +19,6 @@ def modified_input_data(age,gender,bmi,children,smoker_status,region):
         mod_gender=1
     else:
         mod_gender=0
-        
     
     #encode the smoker status
     if smoker_status=='yes':
@@ -44,19 +37,26 @@ def modified_input_data(age,gender,bmi,children,smoker_status,region):
         mod_region=3
         
     
-    #Store all data in tuple
-    input_data=(age,mod_gender,bmi,children,mod_smoking_status,mod_region)
+    #Store all data in dictionary
+    input_data_for_model = {
+        
+        'age': age,
+        'gender': mod_gender,
+        'bmi': bmi,
+        'children': children,
+        'smoke': mod_smoking_status,
+        'region': mod_region,
+       
+        }
     
-    #Convert the data to array
-    input_data_array=np.asarray(input_data)
-    
-    #reshape the data
-    input_data_reshaped=input_data_array.reshape(1,-1)
-    
-    #make predictions on the reshaped data
-    prediction=model.predict(input_data_reshaped)
+    #Store in a json format
+    input_json = json.dumps(input_data_for_model)
 
-    return prediction[0]
+    #Post the data to the url 
+    response = requests.post(url, data=input_json)
+    
+    # Return the response
+    return response.text
 
 def main():
     #Title of the page
@@ -89,10 +89,8 @@ def main():
             with st.spinner('Processing...'):
                 time.sleep(5)
                 
-                
-            
             #enter arguments to the function and round the result to 2 decimal place
-            cost=modified_input_data(age,gender,bmi,children,smoke,region)
+            cost= float (modified_input_data(age,gender,bmi,children,smoke,region))
             
             #format the cost
             formatted_cost = "{:,.2f}".format(cost)
