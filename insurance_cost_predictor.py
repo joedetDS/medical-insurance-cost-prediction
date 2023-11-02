@@ -101,7 +101,7 @@ def main():
             formatted_cost = "{:,.2f}".format(cost)
             
             #add text to the cost
-            cost_text="Your annual insurance cost is $"+ str(formatted_cost)
+            cost_text="Your insurance cost is #"+ str(formatted_cost)
             
             #Display the cost
             st.success(cost_text)
