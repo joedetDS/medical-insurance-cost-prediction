@@ -87,7 +87,7 @@ def main():
             
         #Display an error if its not a number    
         elif (not age.isnumeric() or not bmi.isnumeric() or not children.isnumeric()):
-            st.error("Should be numeric")
+            st.error("Please enter numeric values for age, BMI, and children.")
             
         else: 
             #Display a spinner while waiting
