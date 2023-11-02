@@ -84,6 +84,11 @@ def main():
         #Display an error if an input field is left empty
         if (not age or  not bmi or not children):
             st.error("No input field should be left blank!")
+            
+        #Display an error if its not a number    
+        elif (not age.isnumeric() or not bmi.isnumeric() or not children.isnumeric()):
+            st.error("Should be numeric")
+            
         else: 
             #Display a spinner while waiting
             with st.spinner('Processing...'):
