@@ -65,11 +65,13 @@ def main():
     
     
     #Prompt user to enter the details
-    age=st.text_input('Age')
+    age = st.slider('Age', min_value=0, max_value=100)
+    st.success(f'Selected Age: {age}')
     
     gender=st.selectbox('Select your gender',['Male','Female'])
     
-    bmi=st.text_input('BMI (kg/m²)')
+    bmi = st.slider('BMI (kg/m²)', min_value=0, max_value=100)
+    st.success(f'Selected BMI: {bmi}')
     
     children=st.text_input('Number of Children')
     
@@ -86,8 +88,8 @@ def main():
             st.error("No input field should be left blank!")
             
         #Display an error if its not a number    
-        elif (not age.isnumeric() or not bmi.isnumeric() or not children.isnumeric()):
-            st.error("Please enter numeric values for age, BMI, and children.")
+        elif (age == 0 or bmi == 0):
+            st.error("Please enter a valid values for age and BMI")
             
         else: 
             #Display a spinner while waiting
