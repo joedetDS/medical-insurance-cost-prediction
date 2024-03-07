@@ -60,8 +60,7 @@ def modified_input_data(age,gender,bmi,children,smoker_status,region):
 
 def main():
     #Title of the page
-    st.title("Medical Insurance Cost Predictor")
-    
+    st.title("MedInsure: Your Medical Insurance Cost Estimator")
     
     
     #Prompt user to enter the details
