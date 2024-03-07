@@ -77,7 +77,7 @@ def main():
     children=st.text_input('Number of Children')
     st.success(f'Selected children: {children}')
     
-    smoke=st.selectbox('Do you Smoke',['Yes','No'])
+    smoke=st.selectbox('Do you Smoke',['yes','no'])
     st.success(f'Selected smoke status: {smoke}')
     
     region=st.selectbox('Select your region',['southeast','southwest','northeast','northwest'])
@@ -89,6 +89,9 @@ def main():
         #Display an error if an input field is left empty
         if (not age or  not bmi or not children):
             st.error("No input field should be left blank!")
+
+        elif not children.isnumeric():
+            st.error("Input must be a number")
             
         #Display an error if its not a number    
         elif (age == 0 or bmi == 0):
@@ -97,19 +100,18 @@ def main():
         else: 
             #Display a spinner while waiting
             with st.spinner('Processing...'):
-                time.sleep(5)
                 
-            #enter arguments to the function and round the result to 2 decimal place
-            cost= float (modified_input_data(age,gender,bmi,children,smoke,region))
-            
-            #format the cost
-            formatted_cost = "{:,.2f}".format(cost)
-            
-            #add text to the cost
-            cost_text="Your insurance cost is #"+ str(formatted_cost)
-            
-            #Display the cost
-            st.success(cost_text)
+                #enter arguments to the function and round the result to 2 decimal place
+                cost= float (modified_input_data(age,gender,bmi,children,smoke,region))
+                
+                #format the cost
+                formatted_cost = "{:,.2f}".format(cost)
+                
+                #add text to the cost
+                cost_text="Your insurance cost is #"+ str(formatted_cost)
+                
+                #Display the cost
+                st.success(cost_text)
 
 #Run the main function
 if __name__ =='__main__':
