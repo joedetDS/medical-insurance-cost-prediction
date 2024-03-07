@@ -81,7 +81,7 @@ def main():
     st.success(f'Selected smoke status: {smoke}')
     
     region=st.selectbox('Select your region',['southeast','southwest','northeast','northwest'])
-    st.success(f'Selected region: {region')
+    st.success(f'Selected region: {region}')
     
     #Customize the button
     if st.button("Show Cost"):
