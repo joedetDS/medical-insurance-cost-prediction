@@ -69,16 +69,19 @@ def main():
     st.success(f'Selected Age: {age}')
     
     gender=st.selectbox('Select your gender',['Male','Female'])
+    st.success(f'Selected Gender: {gender}')
     
     bmi = st.slider('BMI (kg/m²)', min_value=0, max_value=100)
     st.success(f'Selected BMI: {bmi}')
     
     children=st.text_input('Number of Children')
+    st.success(f'Selected children: {children}')
     
     smoke=st.selectbox('Do you Smoke',['Yes','No'])
+    st.success(f'Selected smoke status: {smoke}')
     
     region=st.selectbox('Select your region',['southeast','southwest','northeast','northwest'])
-    
+    st.success(f'Selected region: {region')
     
     #Customize the button
     if st.button("Show Cost"):
